@@ -6382,11 +6382,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\msami\\OneDrive\\Documents\\GitHub\\CarRent\\CarRent\\CarRent.csproj",
+      "projectUniqueName": "C:\\Users\\msami\\OneDrive\\Documents\\GitHub\\Car_Rentals_Task_Csharp\\CarRent\\CarRent.csproj",
       "projectName": "CarRent",
-      "projectPath": "C:\\Users\\msami\\OneDrive\\Documents\\GitHub\\CarRent\\CarRent\\CarRent.csproj",
+      "projectPath": "C:\\Users\\msami\\OneDrive\\Documents\\GitHub\\Car_Rentals_Task_Csharp\\CarRent\\CarRent.csproj",
       "packagesPath": "C:\\Users\\msami\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\msami\\OneDrive\\Documents\\GitHub\\CarRent\\CarRent\\obj\\",
+      "outputPath": "C:\\Users\\msami\\OneDrive\\Documents\\GitHub\\Car_Rentals_Task_Csharp\\CarRent\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\msami\\AppData\\Roaming\\NuGet\\NuGet.Config",

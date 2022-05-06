@@ -6,7 +6,7 @@ namespace CarRent.Models
     public class BaseEntity
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] // Data annotation VS Fluent API 
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
     }
