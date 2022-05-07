@@ -15,16 +15,16 @@ namespace CarRent.Attribuites
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             ErrorMessage = ErrorMessageString;
-            var currentValue = (DateTime)value;
+            var returnDate = (DateTime)value;
 
             var property = validationContext.ObjectType.GetProperty(_comparisonProperty);
 
             if (property == null)
                 throw new ArgumentException("Property with this name not found");
 
-            var comparisonValue = (DateTime)property.GetValue(validationContext.ObjectInstance);
+            var rentDate = (DateTime)property.GetValue(validationContext.ObjectInstance);
 
-            if (currentValue > comparisonValue)
+            if (returnDate > rentDate)
                 return ValidationResult.Success;
 
             return new ValidationResult(ErrorMessage);

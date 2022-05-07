@@ -64,7 +64,6 @@ namespace CarRent.Controllers
 
         // POST: Rentals/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ReturnDate,Comment,DriverId,CarId,Id,RentData")] Rentals rentals)
         {
             if (ModelState.IsValid)
@@ -100,10 +99,7 @@ namespace CarRent.Controllers
         }
 
         // POST: Rentals/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ReturnDate,Comment,DriverId,CarId,Id")] Rentals rentals)
         {
             if (id != rentals.Id)
@@ -158,7 +154,6 @@ namespace CarRent.Controllers
 
         // POST: Rentals/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var rentals = await _context.Rentals.FindAsync(id);
