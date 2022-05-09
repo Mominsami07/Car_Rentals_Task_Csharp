@@ -23,7 +23,10 @@ namespace CarRent.Controllers
         public async Task<IActionResult> Index()
         {
             var mainDbContext = _context.Rentals.Include(r => r.Car).Include(r => r.Driver);
-            return View(await mainDbContext.ToListAsync());
+            var ss = await mainDbContext.ToListAsync();
+            
+            
+            return View(ss);
         }
 
         // GET: Rentals/Details/5
@@ -51,13 +54,15 @@ namespace CarRent.Controllers
         {
             var carRental = _context.Rentals.Include(m => m.Car);
 
-            var availableCar = _context.Cars.Where(m =>
-                            carRental.Any(x => m.Id == x.CarId && x.IsReturned) || 
-                            (!carRental.Any(x=> m.Id == x.CarId))
-                            );
-                           ;
+            var returnedCar = carRental.Where(m => m.ReturnDate != null).Select(m => m.CarId);
 
-            ViewData["CarId"] = new SelectList(availableCar, "Id", "Make");
+            var notReturnedCar = carRental.Where(m => m.ReturnDate == null).Select(m => m.CarId);
+
+            var cars = _context.Cars.Where(m => returnedCar.Any(x => x == m.Id) ||
+                        !notReturnedCar.Any(x => x == m.Id)
+                        );
+
+            ViewData["CarId"] = new SelectList(cars, "Id", "Make");
             ViewData["DriverId"] = new SelectList(_context.Drivers, "Id", "Name");
             return View();
         }
@@ -68,8 +73,6 @@ namespace CarRent.Controllers
         {
             if (ModelState.IsValid)
             {
-                rentals.IsReturned = false;
-
                 _context.Add(rentals);
                 var result = await _context.SaveChangesAsync();
 
@@ -80,57 +83,33 @@ namespace CarRent.Controllers
             return View(rentals);
         }
 
-        // GET: Rentals/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+    
+
+        public async Task<IActionResult> ReturnDate(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var rentals = await _context.Rentals.FindAsync(id);
+            var rentals = await _context.Rentals.Include(r => r.Car).FirstOrDefaultAsync(m => m.Id == id);
+
             if (rentals == null)
             {
                 return NotFound();
             }
-            ViewData["CarId"] = new SelectList(_context.Cars, "Id", "Make", rentals.CarId);
-            ViewData["DriverId"] = new SelectList(_context.Drivers, "Id", "Email", rentals.DriverId);
-            return View(rentals);
+
+            rentals.ReturnDate = DateTime.Now;
+
+            _context.Update(rentals);
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
+
+
+
         }
 
-        // POST: Rentals/Edit/5
-        [HttpPost]
-        public async Task<IActionResult> Edit(int id, [Bind("ReturnDate,Comment,DriverId,CarId,Id")] Rentals rentals)
-        {
-            if (id != rentals.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(rentals);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!RentalsExists(rentals.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["CarId"] = new SelectList(_context.Cars, "Id", "Make", rentals.CarId);
-            ViewData["DriverId"] = new SelectList(_context.Drivers, "Id", "Email", rentals.DriverId);
-            return View(rentals);
-        }
 
         // GET: Rentals/Delete/5
         public async Task<IActionResult> Delete(int? id)

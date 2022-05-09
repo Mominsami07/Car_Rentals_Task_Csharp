@@ -18,7 +18,7 @@
             <p class="card-text">Date of Rent:&ensp;@item.RentData</p>
             <p class="card-text">Date of Return:&ensp;@item.ReturnDate</p>
 
-            @if (@item.IsReturned)
+            @if (@item.ReturnDate != null)
             {
                 <p class="card-text">Date of return:&ensp;@item.Driver.PhoneNumber</p>
             }

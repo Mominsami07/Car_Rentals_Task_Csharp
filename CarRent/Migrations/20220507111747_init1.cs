@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CarRent.Migrations
 {
-    public partial class init : Migration
+    public partial class init1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,10 +12,7 @@ namespace CarRent.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Make = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Model = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    RegisterationNumber = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1")
                 },
                 constraints: table =>
                 {
@@ -27,11 +24,7 @@ namespace CarRent.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Surname = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1")
                 },
                 constraints: table =>
                 {

@@ -50,7 +50,13 @@
                 @Html.DisplayFor(modelItem => item.Car.Make)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                @if (item.ReturnDate == null)
+                {
+                    <form asp-action="ReturnDate" asp-controller="Rentals" asp-route-id="@item.Id">
+                        <button class="btn btn-success" type="submit">Return </button> |
+                    </form>
+                }
+
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>

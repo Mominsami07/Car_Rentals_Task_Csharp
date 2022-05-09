@@ -4,14 +4,16 @@ using CarRent.DateBase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CarRent.Migrations
 {
     [DbContext(typeof(MainDbContext))]
-    partial class MainDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220507111747_init1")]
+    partial class init1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,21 +28,6 @@ namespace CarRent.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Make")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Model")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("RegisterationNumber")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
                     b.HasKey("Id");
 
                     b.ToTable("Cars");
@@ -52,26 +39,6 @@ namespace CarRent.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Surname")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -95,10 +62,13 @@ namespace CarRent.Migrations
                     b.Property<int>("DriverId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("RentData")
+                    b.Property<bool>("IsReturned")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("RentData")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("ReturnDate")
+                    b.Property<DateTime>("ReturnDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");

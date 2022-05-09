@@ -6,6 +6,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Cars\**" />
+    <Compile Remove="Views\Drivers\**" />
+    <Content Remove="Views\Cars\**" />
+    <Content Remove="Views\Drivers\**" />
+    <EmbeddedResource Remove="Views\Cars\**" />
+    <EmbeddedResource Remove="Views\Drivers\**" />
+    <None Remove="Views\Cars\**" />
+    <None Remove="Views\Drivers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="Views\Home\Index.cshtml" />
     <None Include="Views\Shared\_Layout.cshtml" />
     <None Include="Views\Shared\_ValidationScriptsPartial.cshtml" />

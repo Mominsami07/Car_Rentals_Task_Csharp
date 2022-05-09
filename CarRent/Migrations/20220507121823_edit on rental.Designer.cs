@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarRent.Migrations
 {
     [DbContext(typeof(MainDbContext))]
-    [Migration("20220430105927_init")]
-    partial class init
+    [Migration("20220507121823_edit on rental")]
+    partial class editonrental
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -103,7 +103,7 @@ namespace CarRent.Migrations
                     b.Property<DateTime>("RentData")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("ReturnDate")
+                    b.Property<DateTime?>("ReturnDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");

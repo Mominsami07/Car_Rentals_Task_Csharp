@@ -4,14 +4,16 @@ using CarRent.DateBase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CarRent.Migrations
 {
     [DbContext(typeof(MainDbContext))]
-    partial class MainDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220507112906_test2")]
+    partial class test2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -95,10 +97,13 @@ namespace CarRent.Migrations
                     b.Property<int>("DriverId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("RentData")
+                    b.Property<bool>("IsReturned")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("RentData")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("ReturnDate")
+                    b.Property<DateTime>("ReturnDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");

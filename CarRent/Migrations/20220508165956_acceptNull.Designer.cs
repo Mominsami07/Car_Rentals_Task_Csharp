@@ -4,14 +4,16 @@ using CarRent.DateBase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CarRent.Migrations
 {
     [DbContext(typeof(MainDbContext))]
-    partial class MainDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220508165956_acceptNull")]
+    partial class acceptNull
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,6 +96,9 @@ namespace CarRent.Migrations
 
                     b.Property<int>("DriverId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsReturned")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("RentData")
                         .HasColumnType("datetime2");
